@@ -1,0 +1,17 @@
+dCalendario =
+VAR vAnoMin =
+    YEAR ( MIN ( fContratos[Data Admissão] ) )
+VAR vAnoMax =
+    YEAR ( MAX ( fContratos[Data Afastamento] ) )
+VAR vDataInicial =
+    DATE ( vAnoMin; 01; 01 )
+VAR vDataFinal =
+    DATE ( vAnoMax; 12; 31 )
+RETURN
+    ADDCOLUMNS (
+        CALENDAR ( vDataInicial; vDataFinal );
+        “Ano”; YEAR ( [Date] );
+        “Mês Num”; MONTH ( [Date] );
+        “Mês”; FORMAT ( [Date]; “mmmm” );
+        “Dia”; DAY ( [Date] )
+    )
